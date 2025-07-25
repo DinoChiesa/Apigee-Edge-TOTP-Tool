@@ -59,18 +59,18 @@ for Edge.
 
 ![Set up 2FA in Apigee Edge](./img/set-up-2fa-apigee.png)
 
-When you see the barcode, click the text that reads "xxx yyy zzz".
+When you see the barcode, click the text that reads "Unable to Scan Barcode?".
 
 ![the barcode](./img/link-a-new-device-via-barcode.png)
 
 
-This will display a string of characters; that is your TOTP Secret. Copy THAT
+This will display a string of characters; that is your base32-encoded TOTP Secret. Copy THAT
 string into a plain text file, and you can use it with this tool.
 
 If you _ALSO_ want to set up a mobile app, copy the string of characters, and
-then also scan the barcode with your mobile app. (If you do this you will be anle
+then also scan the barcode with your mobile app. If you do this you will be anle
 to verify that the Java app here generates the same code as the mobile
-authenticator app.)
+authenticator app.
 
 ## _Actually_ Using the tool
 
@@ -84,10 +84,10 @@ cat ./secretkey.txt |
 ```
 
 I suggest that you do not type in the seed key directly on the command line.
-While it is possible to do so, taking the approach I show here - using cat and
-the filename - means the seed key is not visible in the command line, in a script
-file, or in command history. This reduces the likelihood of key leakage. You can
-protect the file, and that protects your key.
+While it is possible to do so, taking the approach I show here - piping the
+output of cat into the tool - means the seed key is not visible in the command
+line, in a script file, or in command history. This reduces the likelihood of
+key leakage. You can protect the file, and that protects your seed key.
 
 In contrast, this bit of clever bash syntax:
 
